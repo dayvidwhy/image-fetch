@@ -402,6 +402,14 @@ function bindListeners () {
         imageStore.clearImages();
         fetchRedditImages();
     });
+
+    document.getElementsByClassName("theme-button")[0].addEventListener("click", function (e) {
+        if (document.body.className === "light") {
+            document.body.className = "dark";
+        } else {
+            document.body.className = "light";
+        }
+    });
 }
 
 // polyfill fetch if required

@@ -6,11 +6,22 @@
 html {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    --main-text-colour: #7f8c8d;
+    height: 100%;
 }
 
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    height:100%;
+}
+
+body.light {
+    background: #FFF;
+}
+
+body.dark {
+    background: black;
 }
 
 body, p {
@@ -31,6 +42,8 @@ nav {
 .nav-inner {
     width: 960px;
     margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .nav-inner ul {
@@ -56,6 +69,17 @@ nav {
     color: #cacaca;
 }
 
+.theme-button {
+    background-color: #c0392b;
+    color: #FFF;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease-in-out;
+    font-weight: 700;
+}
+
 /* Main banner. */
 header {
     width: 960px;
@@ -63,6 +87,7 @@ header {
     text-align: center;
     padding-bottom: 16px;
     margin-bottom: 16px;
+    margin-top: 16px;
     border-bottom: 1px solid #dedede;
 }
 
@@ -84,8 +109,7 @@ h1 {
     font-weight: 400;
     text-align: left;
     padding: 6px 8px;
-    background-color: #f7f7f7;
-    color: #7f8c8d;
+    color: var(--main-text-colour);
     font-weight: 700;
     border-bottom: 1px solid #ccc;
 }
@@ -94,7 +118,7 @@ header p {
     font-size: 18px;
     padding: 8px 8px;
     text-align: left;
-    color: #7f8c8d;
+    color: var(--main-text-colour);
     line-height: 1.5;
     font-weight: 400;
 }
@@ -115,7 +139,7 @@ a:visited, a:hover {
 /* Core output container */
 #output {
     font-size: 1.1em;
-    color: #7f8c8d;
+    color: var(--main-text-colour);
     width: 960px;
     margin: auto;
 }
@@ -259,6 +283,8 @@ img, video {
     border: 1px solid #ccc;
     font-size: 1.5em;
     margin: 0;
+    color: var(--main-text-colour);
+    background: inherit;
 }
 
 form {
@@ -273,16 +299,22 @@ form input[type='text'] {
     width: 90%;
     font-weight: 400;
     flex: 1;
+    background: inherit;
+    color: var(--main-text-colour);
+    appearance: none;
+    border-radius: 0;
     -webkit-appearance: none;
     -webkit-border-radius: 0;
 }
 
 form input[type='submit'] {
-    background-color: #FFF;
+    background-color: inherit;
     border-left: none;
+    color: var(--main-text-colour);
     cursor: pointer;
-    background-color: hsla(31,15%,50%,.1);
     transition: all 0.1s ease-in-out;
+    appearance: none;
+    border-radius: 0;
     -webkit-appearance: none;
     -webkit-border-radius: 0;
 }
@@ -294,6 +326,7 @@ form input[type='submit']:hover {
 
 form select {
     border-radius: 0;
+    appearance: none;
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
     cursor: pointer;
