@@ -37,6 +37,7 @@ nav {
     text-align: center;
     color: white;
     overflow: auto;
+    position: sticky;
 }
 
 .nav-inner {
@@ -147,12 +148,11 @@ a:visited, a:hover {
 /* Grid for images */
 .row {
     display: flex;
-    margin-bottom: 8px;
 }
 
 .image-container {
     position: relative;
-    margin: 0 4px 0 4px;
+    margin: 0 2px 4px 2px;
 }
 
 .image-container img {
@@ -212,7 +212,7 @@ img, video {
 #image-loading-message {
     display: none;
     text-align: center;
-    font-size: 52px;
+    font-size: 2em;
     padding: 20px 0;
     color: var(--main-text-colour);
 }
@@ -350,12 +350,12 @@ form select:hover {
     header {
         width: 95%;
         margin: auto;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
+        margin-top: 16px;
     }
     #output {
         width: 100%;
     }
-
     .nav-inner {
         margin-left: 8px;
         width: 95%;
@@ -365,15 +365,17 @@ form select:hover {
 @media screen and (max-width: 500px) {
     header {
         width: 100%;
-    }
-    .row {
-        margin-bottom: 2px;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
     #overlay-inner {
         width: 100%;
     }
     .image-container {
-        margin: 4px 2px;
+        margin: 0 1px 2px 1px;
+    }
+    #image-loading-message {
+        font-size: 1em;
     }
     input[type=text] {
         width: 100%;
@@ -383,7 +385,7 @@ form select:hover {
         width: 75%;
     }
     header p {
-        font-size: 1em;
+        font-size: 0.8em;
     }
     .input-style {
         font-size: 0.9em;
