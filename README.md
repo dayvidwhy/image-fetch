@@ -1,5 +1,4 @@
 # RedFetch
-![RedFetch Logo](/images/redfetch.png "RedFetch Logo")
 
 I made this as a way of understanding the [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) and loading images after initially loading a thumbnail image.
 
