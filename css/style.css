@@ -21,7 +21,7 @@ body.light {
 }
 
 body.dark {
-    background: black;
+    background: #202020;
 }
 
 body, p {
@@ -214,6 +214,7 @@ img, video {
     text-align: center;
     font-size: 52px;
     padding: 20px 0;
+    color: var(--main-text-colour);
 }
 
 /* overlay */
