@@ -6,7 +6,7 @@ I made this as a way of understanding the [Fetch API](https://developer.mozilla.
 ```bash
 git clone git@github.com:dayvidwhy/redfetch.git
 cd redfetch
-# open the index.html file
+open index.html
 ```
 
 This project does not use any build tools, it is just HTML, CSS and JavaScript, so you just have to open the included HTML file and the project will load.
