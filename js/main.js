@@ -87,6 +87,7 @@ function fetchRedditImages () {
             // ideally track if all pulled images load, then test height
             setTimeout(function () {
                 if (scroller.testHeight()) {
+                    scroller.disableScroller();
                     fetchRedditImages();
                 } else {
                     scroller.enableScroller();
@@ -227,7 +228,7 @@ var scroller = (function () {
 
     // have we scrolled to the end of the page?
     function _testHeight () {
-        return window.pageYOffset + window.innerHeight >= document.body.scrollHeight;
+        return window.scrollY + window.innerHeight >= (document.body.scrollHeight - 400);
     }
 
     // Have scrolled far enough down the page?
