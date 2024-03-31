@@ -131,6 +131,10 @@ a:visited, a:hover {
     margin: 0 4px 0 4px;
 }
 
+.image-container img {
+    display: block;
+}
+
 .image-container:first-child {
     margin-left: 0;
 }
