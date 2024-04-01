@@ -63,6 +63,10 @@ function getContentInfo (element) {
 
 // Initiate our Reddit request
 function fetchRedditImages () {
+    if (imageStore.hasNoMoreImages()) {
+        loader.message("No more images");
+        return;
+    }
     loader.message("Loading...");
     fetch(getSearchUrl())
         .then(function (response) {
@@ -127,27 +131,22 @@ var imageStore = (function () {
         getNextImages () {
             return nextImages ? "?after=" + nextImages : "";
         },
-        insertImages (data) {       
-            for (var i = 0; i < data.children.length; i++) {
-                // check for a full row
-                if (imageCounter === imagesPerRow) {
-                    output.appendChild(currentRow);
+        hasNoMoreImages () {
+            return nextImages === null;
+        },
+        insertImages (data) {
+            var imageList = data.children.filter(function (element) {
+                return (
+                    element.data.preview &&
+                    !element.data.over_18 &&
+                    element.data.preview.images[0].resolutions.length !== 0
+                );
+            });
 
-                    imageCounter = 0;
-
-                    currentRow = document.createElement("div");
-                    currentRow.className = "row";
-                }
-
-                var element = data.children[i];
-
-                // should we use this image?
-                if (!element.data.preview || element.data.over_18) continue;
+            for (var i = 0; i < imageList.length; i++) {
+                var element = imageList[i];
 
                 var currentImages = element.data.preview.images[0];
-
-                // If the resolutions array is empty just skip the image
-                if (currentImages.resolutions.length === 0) continue;
 
                 // title of the image
                 var titleText = element.data.title;
@@ -218,6 +217,20 @@ var imageStore = (function () {
 
                 // increment our image counter
                 imageCounter++;
+
+                // should we insert a row at this point?
+                if (imageCounter === imagesPerRow) {
+                    output.appendChild(currentRow);
+                    imageCounter = 0;
+
+                    currentRow = document.createElement("div");
+                    currentRow.className = "row";
+                } else if (
+                    imageStore.hasNoMoreImages() &&
+                    i === imageList.length - 1
+                ) {
+                    output.appendChild(currentRow);
+                }
             }
         }
     };
@@ -388,7 +401,10 @@ function bindListeners () {
     var inputField = document.getElementById("input");
 
     // when users type into the search bar again, clear the current search
-    inputField.addEventListener("keypress", imageStore.clearImages);
+    inputField.addEventListener("keypress", function () {
+        imageStore.clearImages();
+        loader.hide();
+    });
 
     // clicking the search button
     document.getElementById("input-search").addEventListener("submit", function (e) {
